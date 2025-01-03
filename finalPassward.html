@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>終極密碼</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      h1 {
+        border: 2px solid black;
+        background-color: rgba(117, 164, 179, 0.767);
+        text-align: center;
+        padding: 20px;
+      }
+      .rangeDisplay {
+        padding: 30px;
+        background-color: aquamarine;
+        display: flex;
+        font-size: 20px;
+      }
+      .inputDisplay {
+        padding: 20px;
+        background-color: aliceblue;
+        display: flex;
+        font-size: 20px;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      .container button {
+        background-color: aqua;
+        padding: 10ox 20px;
+        font-size: 50px;
+        border-radius: 10px;
+        cursor: pointer;
+        flex-basis: calc(33.33% - 10px);
+      }
+      .container .btn:hover {
+        background-color: bisque;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><strong>終極密碼</strong></h1>
+    <span class="rangeDisplay"></span>
+    <span class="inputDisplay"></span>
+    <div class="container">
+      <button class="num">1</button>
+      <button class="num">2</button>
+      <button class="num">3</button>
+      <button class="num">4</button>
+      <button class="num">5</button>
+      <button class="num">6</button>
+      <button class="num">7</button>
+      <button class="num">8</button>
+      <button class="num">9</button>
+      <button class="back">←</button>
+      <button class="num">0</button>
+      <button class="ok" style="width: 200px">√</button>
+      <button class="reset">Reset</button>
+      <button class="start">Start</button>
+      <button class="check">Answer</button>
+    </div>
+
+    <script>
+      let answer;
+      let min = 1;
+      let max = 100;
+      let userInput = "";
+      const container = document.querySelector(".container");
+      const numberBtn = document.querySelectorAll(".num");
+      const reset = document.querySelector(".reset");
+      const start = document.querySelector(".start");
+      const check = document.querySelector(".check");
+      const okButton = document.querySelector(".ok");
+      const rangeDisplay = document.querySelector(".rangeDisplay");
+      const inputDisplay = document.querySelector(".inputDisplay");
+
+      start.addEventListener("click", function () {
+        answer = getRandomInt(1, 100);
+        min = 1;
+        max = 100;
+        rangeDisplay.textContent = `請輸入${min} ~ ${max} 範圍的數字`;
+        inputDisplay.textContent = "";
+        userInput = "";
+      });
+
+      check.addEventListener("click", function () {
+        if (answer) {
+          console.log(`答案是:${answer}`);
+          inputDisplay.textContent = `答案是:${answer}`;
+        } else {
+          console.log("請按下Start開始遊戲");
+          rangeDisplay.textContent = "請按下Start開始遊戲";
+        }
+      });
+
+      reset.addEventListener("click", function () {
+        min = 1;
+        max = 100;
+        answer = null;
+        console.log("遊戲重置，請按下Start開始遊戲");
+        rangeDisplay.textContent = `遊戲重置，請按下Start開始遊戲`;
+        inputDisplay.textContent = "";
+        userInput = "";
+      });
+
+      //按鈕1~9 & 倒退按鈕
+      container.addEventListener("click", function (event) {
+        if (answer && event.target.classList.contains("num")) {
+          numValue = event.target.textContent; // 獲取按鈕上的數字
+          userInput += numValue;
+          inputDisplay.textContent = userInput; // 顯示在 inputDisplay
+        }
+        if (event.target.classList.contains("back")) {
+          userInput = userInput.slice(0, -1); // 刪除最後一個字元
+          inputDisplay.textContent = userInput;
+        }
+      });
+
+      //送出按鈕
+      okButton.addEventListener("click", function () {
+        const guessNum = parseInt(userInput, 10);
+        if (guessNum < min || guessNum > max) {
+          rangeDisplay.textContent = `請輸入有效的數字！`;
+          inputDisplay.textContent = "";
+          userInput = "";
+          return;
+        }
+        if (guessNum < answer) min = guessNum + 1;
+        rangeDisplay.textContent = `請輸入 ${min} ~ ${max} 範圍的數字`;
+        if (guessNum > answer) max = guessNum - 1;
+        rangeDisplay.textContent = `請輸入 ${min} ~ ${max} 範圍的數字`;
+        if (guessNum === answer) {
+          rangeDisplay.textContent = `恭喜您猜中囉! 答案是 ${answer}`;
+        }
+        userInput = "";
+        inputDisplay.textContent = "";
+      });
+
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+      }
+    </script>
+  </body>
+</html>
