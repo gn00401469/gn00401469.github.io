@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      body {
+        background-color:  #fcfcfd;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <h1 class="p-3 mb-2 bg-dark text-white" style="text-align: center">
+      1A2B猜數字遊戲
+    </h1>
+    <div class="d-grid gap-2 col-5 mx-auto">
+      <button type="button" class="btn btn-outline-info"><strong>開始遊戲</strong></button>
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        data-bs-toggle="modal"
+        data-bs-target="#RestartModal"
+      >
+        遊戲重來
+      </button>
+      <button type="button" class="btn btn-outline-success">偷看答案</button>
+    </div>
+    <div class="input-group input-group-lg">
+      <span class="input-group-text" id="inputGroup-sizing-lg"
+        >猜的數字不可重複</span
+      >
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-lg"
+        disabled
+      />
+      <button type="button" class="btn btn-outline-secondary" disabled>
+        猜！！！
+      </button>
+    </div>
+
+    <div class="history-container col-1">
+      <h5>歷史紀錄</h5>
+      <ul class="history-list list-group"></ul>
+    </div>
+
+    <!--  Restart Modal -->
+    <div
+      class="modal fade"
+      id="RestartModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">遊戲重來</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">按下"開始遊戲"重新開始</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const startBtn = document.querySelector(".btn.btn-outline-info");
+      const restartBtn = document.querySelector(".btn.btn-outline-danger");
+      const answerBtn = document.querySelector(".btn.btn-outline-success");
+      const guessBtn = document.querySelector(".btn.btn-outline-secondary");
+      let input = document.querySelector(".form-control");
+      const modalMessage = document.querySelector("#modal-message");
+      let A;
+      let B;
+      let answer;
+      disableButton(restartBtn);
+      disableButton(answerBtn);
+      let historyList = document.querySelector(".list-group");
+
+      //開始遊戲
+      startBtn.addEventListener("click", function () {
+        enableButton(restartBtn);
+        enableButton(answerBtn);
+        disableButton(startBtn);
+        enableButton(input);
+        enableButton(guessBtn);
+        answer = generateUniqueFourDigit();
+        historyList.innerHTML = ""; // 清空歷史紀錄
+        console.log(`答案: ${answer}`); // Debug
+      });
+      //遊戲重來
+      restartBtn.addEventListener("click", function () {
+        disableButton(restartBtn);
+        enableButton(startBtn);
+        disableButton(answerBtn);
+        disableButton(input);
+        disableButton(guessBtn);
+        input.value = "";
+        historyList.innerHTML = "";
+      });
+      //偷看答案
+      answerBtn.addEventListener("click", function () {
+        alert(`答案是: ${answer}`);
+      });
+      //猜數字
+      guessBtn.addEventListener("click", function () {
+        const userInput = input.value.trim();
+
+        if (!parseInt(userInput)) {
+          alert("請輸入4位數字");
+          return;
+        }
+        if (userInput.length > 4 || userInput.length < 4) {
+          alert("請勿輸入低於或超過的4位數字");
+          return;
+        }
+        if (new Set(userInput).size !==4){
+          alert("數字不可重複");
+          return;
+        }
+        A = 0;
+        B = 0;
+        for (let i = 0; i < answer.length; i++) {
+          if (answer[i] === userInput[i]) {
+            A++;
+          } else if (answer.includes(userInput[i])) {
+            B++;
+          }
+        }
+        if (A === 4) {
+          alert(`恭喜猜中答案: ${answer}！ 將重置遊戲`);
+          disableButton(restartBtn);
+          enableButton(startBtn);
+          disableButton(answerBtn);
+          disableButton(guessBtn);
+          disableButton(input);
+          input.value = "";
+          historyList.innerHTML = "";
+        } else {
+          const record = document.createElement("li");
+          record.classList.add("list-group");
+          record.innerHTML = `<span class="badge rounded-pill text-bg-light">猜測:<strong>${userInput}</strong></span><span class="badge text-bg-warning">${A}A${B}B</span>`;
+          historyList.appendChild(record);
+          input.value = "";
+        }
+      });
+
+      //啟用按鈕功能
+      function enableButton(button) {
+        button.disabled = false;
+        button.classList.remove("disabled");
+      }
+
+      //禁用按鈕功能
+      function disableButton(button) {
+        button.disabled = true;
+        button.classList.add("disabled");
+      }
+
+      //產生隨機四位數字不重複
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+      }
+      function generateUniqueFourDigit() {
+        let answer = new Set();
+        while (answer.size < 4) {
+          let randomDigit = getRandomInt(0, 10);
+          answer.add(randomDigit);
+        }
+        return Array.from(answer).join("");
+      }
+    </script>
+  </body>
+</html>
