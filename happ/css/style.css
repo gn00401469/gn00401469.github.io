@@ -1,0 +1,270 @@
+header .dropdown-toggle::after{
+    content: none;
+}
+.banner{
+    height: 450px;
+    background-image: url(/happ/img/background-banner.e11c478c.jpg);
+    background-repeat: no-repeat;    /* 圖片不重複 */
+    background-position: center;     /* 圖片置中 */
+    background-size: cover;          /* 圖片會改變大小但不影響畫質 */
+    padding-top: 60px;
+}
+.banner h1{
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.banner .search-form{
+    margin: auto; /* 搜尋input欄位可以置中效果 */
+}
+
+.banner .search-form .form-control:focus,
+.banner .search-form .form-control:focus-visible{
+    box-shadow: none;
+} /* 點擊input時的籃框消除 */
+
+.events-container .events{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 8px;
+}
+
+.events-container .event-chips{
+    gap:10px;
+}
+
+.events-container,
+.poster-container,
+.promote-container{
+    margin-top: 80px;
+}
+
+.poster-container .dots-list{
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    z-index: 1;
+}
+
+.poster-container .dots-list .bullet{
+    width: 15px;
+    height: 5px;
+    border-radius: 20%;
+    background-color: #e7e7e7;
+}
+
+.poster-container .dots-list .bullet-active{
+    background-color: #2ca33b;
+}
+
+.poster-container .pre-btn,
+.poster-container .next-btn{
+    position: absolute; /*懸浮*/
+    top: 50%;
+    width: 50px;
+    aspect-ratio: 1/1;
+    background-color: #ffffffc2;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    z-index: 1;
+}
+
+.poster-container .pre-btn{
+    left: 45px;
+}
+
+.poster-container .next-btn{
+    right: 45px;
+}
+
+.promote-container .img-box{
+    max-width: 566px;
+    aspect-ratio: 556/315;
+}
+
+.promote-container .content a{
+    font-size: 21px;
+    color: #2ca33b;
+    font-weight: bold;
+    text-decoration: none;
+} 
+
+.promote-container{
+    overflow: hidden;
+    background-color: bisque;
+    padding: 50px 0;
+}
+
+.promote-container .promote-carousel{
+    margin-top: 40px;
+    overflow: unset;
+}
+
+.promote-container .promote-carousel a:hover{
+    transform: translateY(-10px);
+}
+
+.card img {
+    height: 150px;
+    object-fit: cover;
+}
+
+.feature-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.feature-text {
+    font-size: 0.9rem;
+    color: #6c757d; /* 灰色文字 */
+}
+
+.footer-brand {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.footer-link {
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.container-foot{
+    padding-left: 100px;
+    margin-top: 100px;
+}
+
+@media screen and (max-width: 991px){  /* 手機版 */
+    header .navbar-nav .nav-link{
+    text-align: center;
+}
+.banner .search-form{
+    max-width: 798px;
+}
+.banner .search-form .input-group{
+    padding: 13px 12px;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.banner .search-form .input-group label{
+    margin-right: 5px;
+} /* label放大鏡與input輸入框間距 */
+
+.banner .search-form .form-control{
+    padding: 0;
+    height: 16px;
+}
+
+.banner .search-form button{
+    width: 100%;
+    padding: 15px 17px;
+}
+}
+
+@media screen and (min-width:768px){
+    .events-container .events{
+        grid-template-columns: repeat(4, auto);  /* 將圖片分成四格放入 */
+        grid-template-rows: 150px 150px;  /* 固定圖片高度 */
+        gap: 20px;
+    }
+
+    .events-container .events :nth-child(1){
+        grid-column: 1/3;  /* 圖片card橫跨幾條線 */
+    }
+
+    .events-container .events :nth-child(2){
+        grid-column: 3/5;
+    }
+
+    .bussiness-container div{
+        border: 1px solid black;
+    }
+
+    .bussiness-text{
+        padding: 65px 55px;
+    }
+
+    .bussiness2-container img{
+        width: 600px;
+        height: 400px;
+    }
+
+    footer{
+        margin-top: 30px;
+    }
+
+    footer img{
+        width: 130px;
+    }
+
+    footer h5{
+        font-size: 12px;
+    }
+}
+    
+
+
+@media screen and (min-width:992px) { /* 桌面版 */
+    .banner{
+        height: 360px;
+    }
+    .banner .search-form{
+        width: 800px;
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+
+    .banner .search-form input{
+        width: 100%;
+        padding: 0;
+    }
+
+    .banner .search-form .input-group{
+        position: relative;
+    }
+
+    .banner .search-form .input-group:not(:last-of-type):after{  /* after/before 皆須有content才會出現效果 */
+        content: "";
+        position: absolute;
+        display: block;
+        border: 1px solid #e7e7e7;
+        height: 50%;
+        top: 25%;
+        right: 10px;
+    } /* 搜尋 時間 人數 中間的分隔線 */
+
+    .banner .search-form button{
+        width: 103px;
+        min-width: 103px;
+        padding: 10px 24px;
+        height: fit-content;
+        margin-right: 15px;
+    }
+
+    .promote-container .content{
+        margin-left: 100px;
+    }
+}
