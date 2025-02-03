@@ -1,0 +1,47 @@
+header .title{
+    color: rgba(20, 197, 44, 0.938);
+    padding: 10px 100px;
+    font-size: 32px;
+    display: inline-block;
+}
+header .date{
+    display: inline-block;
+}
+header .date span{
+    padding: 5px;
+}
+header .date h2{
+    font-size: 20px;
+}
+header .date button{
+    font-size: 14px;
+}
+header .addBtn{
+    display: inline-block;
+    padding-left: 20px;
+}
+header .addBtn button{
+    font-size: 14px;
+}
+
+article .calendar .weekday{
+    height: 30px;
+    font-size: 18px;
+}
+article .calendar .everyday{
+    height: 80px;
+}
+
+.task-preview {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+    display: block;
+}
+
+.task-overflow {
+  font-size: 10px;
+  color: gray;
+  border: none;
+}
