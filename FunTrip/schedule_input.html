@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="./schedule.css">
+    <style>
+        .searchBar div{
+            padding: 30px 50px 0px;
+        }
+        .input{
+            padding: 10px 80px;
+        }
+        .special{
+            padding: 80px 80px 30px;
+        }
+        .special p{
+            color: #2D405799
+        }
+        .special button{
+            float: right;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            background-color: #f2f4f8;
+            color: black;
+            font-weight: 800;
+        }
+        .allPic{
+            justify-content: center;
+        }
+        .allPic img{
+            width: 170px;
+            height: 350px;
+        }
+        .method{
+            padding: 30px 80px 30px;
+        }
+    </style>
+  </head>
+
+  <body>
+
+        <!-- 搜尋bar及結果顯示 -->
+        <div class="searchBar d-flex p-3">
+            <div class="input-group ms-2">
+                <span class="dropdown input-group-text border-1">
+                    <button class="btn btn-primary dropdown-toggle px-2">找地區</button>
+                    <i class="fa-solid fa-search ms-1"></i>
+                    <input type="text" class="form-control border-0" placeholder="看看大家怎麼玩" aria-label="Username"
+                        aria-describedby="basic-addon1" />
+                </span>
+            </div>
+        </div>
+        <h2 class="input"><strong>輸入的目的地</strong></h2>
+
+        <!-- 精選行程 -->
+        <article>
+            <div class="special">
+                <h5><strong>精選行程</strong></h5>
+                <p class="d-inline">看看旅遊專家們安排的路線與小撇步</p>
+                <div class="btn-group d-inline" role="group" aria-label="First group">
+                <button type="button" class="btn btn-outline-secondary">></button>
+                <button type="button" class="btn btn-outline-secondary"><</button>
+                  </div>
+            </div>
+
+            <div>
+                <!-- 幻燈片區域 -->
+                <div class="specialPic swiper mySwiper">
+                    <div class="allPic swiper-wrapper d-flex gap-2">
+                        <div class="swiper-slide">
+                            <img class="rounded-5" src="https://picsum.photos/300/200/?random=10" alt="">
+                            <p class=""><br></p>
+                        </div>
+                        <div class="swiper-slide">
+                            <img class="rounded-5" src="https://picsum.photos/300/200/?random=10" alt="">
+                            <p class=""><br></p>
+                        </div>
+                        <div class="swiper-slide">
+                            <img class="rounded-5" src="https://picsum.photos/300/200/?random=10" alt="">
+                            <p class=""><br></p>
+                        </div>
+                        <div class="swiper-slide">
+                            <img class="rounded-5" src="https://picsum.photos/300/200/?random=10" alt="">
+                            <p class=""><br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+
+        <!-- 行程攻略 -->
+        <article>
+            <div class="method d-flex gap-3">
+                <h5><strong>行程攻略</strong></h5>
+                <button class="btn btn-outline-info dropdown-toggle rounded-pill px-2">時間</button>
+                <button class="btn btn-outline-info dropdown-toggle rounded-pill px-2">主題</button>
+            </div>
+        <!-- 卡片區 -->
+        <div class="container d-flex gap-5">
+            <div class="hitoCard col card border-0">
+                <span><img class="rounded-3" src="./img/hito1.jpg" alt=""></span>
+                <div class="card-body">
+                    <h5 class="userText fs-6 fw-bold">東京七天六夜攻略筆記：橫濱/河口湖/吉祥寺/迪士尼</h5>
+                    <img class="user mx-auto" src="./img/user.jpg" class="avatar rounded-circle d-inline" alt="使用者頭像"><p class="userText d-inline fw-bold">一直玩的馬摩</p>
+                    <div>
+                        <span class="remark">7日遊</span><span class="remark">秘境美拍</span>
+                        <span class="remark">觀光景點</span><span class="remark">+4</span>
+                    </div>
+                    <div class="thumb"><i class="fa-regular fa-thumbs-up"></i>1.6K・8.7K人都在用</div>
+                </div>
+            </div>
+            <div class="hitoCard col card border-0">
+                <span><img class="rounded-3" src="./img/hito2.jpg" alt=""></span>
+                <div class="card-body">
+                    <h5 class="userText fs-6 fw-bold">日本關西必遊路線：京都大阪奈良六天五夜</h5>
+                    <img class="user mx-auto" src="./img/user.jpg" class="avatar rounded-circle d-inline" alt="使用者頭像"><p class="userText d-inline fw-bold">蓉蓉</p>
+                    <div>
+                        <span class="remark">6日遊</span><span class="remark">自由行</span>
+                        <span class="remark">觀光景點</span><span class="remark">+4</span>
+                    </div>
+                    <div class="thumb"><i class="fa-regular fa-thumbs-up"></i>1.6K・8.3K人都在用</div>
+                </div>
+            </div>
+            <div class="hitoCard col card border-0">
+                <span><img class="rounded-3" src="./img/hito3.jpg" alt=""></span>
+                <div class="card-body">
+                    <h5 class="userText fs-6 fw-bold">到嘉義就是要吃！</h5>
+                    <img class="user mx-auto" src="./img/user.jpg" class="avatar rounded-circle d-inline" alt="使用者頭像"><p class="userText d-inline fw-bold">壹加壹</p>
+                    <div>
+                        <span class="remark">2日遊</span><span class="remark">租車自駕</span>
+                        <span class="remark">吃吃喝喝</span><span class="remark"></span>
+                    </div>
+                    <div class="thumb"><i class="fa-regular fa-thumbs-up"></i>1.4K・3.3K人都在用</div>
+                </div>
+            </div>
+            <div class="hitoCard col card border-0">
+                <span><img class="rounded-3" src="./img/hito4.jpg" alt=""></span>
+                <div class="card-body">
+                    <h5 class="userText fs-6 fw-bold">【布萊N】🇯🇵京阪六天五夜行</h5>
+                    <img class="user mx-auto" src="./img/user.jpg" class="avatar rounded-circle d-inline" alt="使用者頭像"><p class="userText d-inline fw-bold">布萊N機票達人</p>
+                    <div>
+                        <span class="remark">6日遊</span><span class="remark">自由行</span>
+                        <span class="remark">觀光景點</span><span class="remark">+3</span>
+                    </div>
+                    <div class="thumb"><i class="fa-regular fa-thumbs-up"></i>989・4.1K人都在用</div>
+                </div>
+            </div>
+        </div>
+        
+        </article>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+
+</html>
